@@ -3,6 +3,7 @@ package com.productservice.productservicemay25.controller;
 import com.productservice.productservicemay25.models.Product;
 import com.productservice.productservicemay25.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +39,11 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long productId) {
-
-        return null;
+        boolean isDeleted = this.productService.deleteProduct(productId);
+        if(!isDeleted){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
     }
 
 }

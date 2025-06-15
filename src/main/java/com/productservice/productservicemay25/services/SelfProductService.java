@@ -51,6 +51,7 @@ public class SelfProductService implements ProductService{
     @Override
     public boolean deleteProduct(Long productId) {
          this.productRepository.deleteById(productId) ;
+         System.out.println("Product deleted with id: " + productId);
          return true;
     }
 }
